@@ -1,22 +1,20 @@
-const  express  =  require ( 'express' ) ;
-const  cors  =  require ( 'cors' ) ;
-const mongoose = require(‘mongoose’);
+const express = require('express');
+const cors = require('cors');
+const mongoose = require('mongoose');
+require('dotenv').config();
 
-require ( 'dotenv' ) . config ( ) ;
+const app = express();
+const port = process.env.PORT || 5000;
 
-const  app  =  express ( ) ;
- port  const =  processus . env . PORT  ||  3000 ;
-
-app . utiliser ( cors ( ) ) ;
-app . use ( express . json ( ) ) ;
+app.use(cors());
+app.use(express.json());
 const uri = process.env.ATLAS_URI;
-mongoose.connect (uri, {useNewUrlParser: true, useCreateIndex: true}
-); 
-connexion const = mangouste.connection;
-connection.once ('open', () => { 
-  console.log ("Connexion à la base de données MongoDB établie avec succès"); 
+mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true }
+);
+const connection = mongoose.connection;
+connection.once('open', () => {
+  console.log("Connexion établi avec la base MongoDB");
 })
-
-app . écouter ( port ,  ( )  =>  {
-    console . log ( `Le serveur fonctionne sur le port: $ { port } ` ) ;
-} ) ;
+app.listen(port, () => {
+    console.log(`Le serveur est en execution dans le port: ${port}`);
+});
