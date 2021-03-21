@@ -17,4 +17,7 @@ connection.once('open', () => {
 })
 app.listen(port, () => {
     console.log(`Le serveur est en execution dans le port: ${port}`);
+    const usersRouter = require('./routes/users');
+
+    app.use('/users', usersRouter);
 });
