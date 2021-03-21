@@ -25,8 +25,40 @@ router.route('/add').post((req, res) => {
     });
 
   newUser.save()
-    .then(() => res.json('User added!'))
+    .then(() => res.json('Ajout utilisateur effectué'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
+
+router.route('/:id').get((req, res) => {
+  User.findById(req.params.id)
+    .then(users => res.json(users))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/:id').put((req, res) => {
+  User.findById(req.params.id)
+    .then(users => {
+      users.username = req.body.username;
+      users.gender = req.body.gender;
+      users.dob = req.body.dob;
+      users.news = req.body.news;
+      users.email = req.body.email;
+      users.photo = req.body.photo;
+
+      users.save()
+        .then(() => res.json('Utilisateur mise à jour'))
+        .catch(err => res.status(400).json('Error: ' + err));
+    })
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+
+
+router.route('/:id').delete((req, res) => {
+  User.findByIdAndDelete(req.params.id)
+    .then(() => res.json('Utilisateur supprimé avec succé'))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 
 module.exports = router;
