@@ -11,7 +11,7 @@ router.route('/add').post((req, res) => {
     const username = req.body.username;
     const gender = req.body.gender;
     const dob = Date.parse(req.body.dob);
-    const news = Boolean.parse(req.body.news);
+    const news = req.body.news;
     const email = req.body.email;
     const photo = req.body.photo;
 
