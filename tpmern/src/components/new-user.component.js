@@ -37,6 +37,18 @@ export default class newuser extends Component {
     });
   }
 
+  fetchrand(){
+    fetch("https://randomuser.me/api").then((response) => {
+      this.setState({
+        username: response.data.username,
+        gender: response.data.gender,
+        dob: new Date(response.data.dob),
+        news: response.data.news,
+        email: response.data.email,
+        photo: response.data.photo
+      })   
+    })
+  }
 
   onChangeUsername(e) {
     this.setState({
@@ -94,6 +106,7 @@ export default class newuser extends Component {
     return (
       <div>
         <h3>Creation d'un nouvel utilisateur</h3>
+        <input type="submit" value="Utiliser Fletch" className="btn btn-primary" onClick={this.fetchrand}/>
         <form onSubmit={this.onSubmit}>
           <div className="form-group"> 
             <label>Username: </label>
