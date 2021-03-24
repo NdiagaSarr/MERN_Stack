@@ -10,10 +10,7 @@ export default class Navbar extends Component {
         <div className="collpase navbar-collapse">
             <ul className="navbar-nav mr-auto">
                 <li className="navbar-item">
-                    <Link to="/" className="nav-link">Liste des utilisateurs</Link>
-                </li>
-                <li className="navbar-item">
-                    <Link to="/:id" className="nav-link">Recherche par ID</Link>
+                    <Link to="/edit" className="nav-link">Modificaation</Link>
                 </li>
                 <li className="navbar-item">
                     <Link to="/add" className="nav-link">Nouvel utilisateur</Link>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import axios from 'axios';
 
 export default class newuser extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ export default class newuser extends Component {
     this.onChangeDob = this.onChangeDob.bind(this);
     this.onChangeNews = this.onChangeNews.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
-    this.onChangephoto = this.onChangePhoto.bind(this);
+    this.onChangePhoto = this.onChangePhoto.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
@@ -30,9 +31,9 @@ export default class newuser extends Component {
       username: 'Entrez le username',
       gender: 'Entrez le genre',
       dob: new Date(),
-      news: 'True or False',
+      news: '1',
       email: 'Donnez le mail',
-      photo: 'Donnez le nom de la photo'
+      photo: 'Nomer la photo'
     });
   }
 
@@ -74,7 +75,7 @@ export default class newuser extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-  
+
     const users = {
       username: this.state.username,
       gender: this.state.gender,
@@ -85,7 +86,7 @@ export default class newuser extends Component {
     };
   
     console.log(users);
-    
+    axios.post('http://localhost:5000/users/add', users).then(res => console.log(res.data));
     window.location = '/';
   }
 
