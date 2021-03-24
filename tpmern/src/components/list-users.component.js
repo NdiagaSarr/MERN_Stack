@@ -43,25 +43,25 @@ export default class listusers extends Component {
   render() {
     return (
       <div>
-        <h3>Liste des Utilisateur</h3>
+        <h3>Liste des Utilisateurs</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group"> 
             <table className="table table-stripped">
               <thead className="thead-dark">
                 <tr>
-                  <th>Utilisateur</th>
-                  <th>Genre</th>
-                  <th>Dob</th>
+                  <th>Utilisateurs</th>
+                  <th>Genres</th>
+                  <th>Dobs</th>
                   <th>News</th>
-                  <th>Email</th>
-                  <th>Photo</th>
+                  <th>Emails</th>
+                  <th>Photos</th>
                 </tr>
               </thead>
               <tbody>
                 {this.usersList()}
               </tbody>
             </table>
-          </div>s
+          </div>
         </form>
       </div>
     )

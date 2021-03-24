@@ -49,7 +49,7 @@ export default class newuser extends Component {
     });
   }
 
-  onChangeDob(e) {
+  onChangeDob(Date) {
     this.setState({
       dob: Date
     });
@@ -82,11 +82,11 @@ export default class newuser extends Component {
       dob: this.state.dob,
       new: this.state.news,
       email: this.state.email,
-      photo: this.state.photo,
+      photo: this.state.photo
     };
   
     console.log(users);
-    axios.post('http://localhost:5000/users/add', users).then(res => console.log(res.data));
+    axios.post('http://localhost:5000/users/add/', users).then(res => console.log(res.data));
     window.location = '/';
   }
 
