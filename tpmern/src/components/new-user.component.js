@@ -55,9 +55,9 @@ export default class newuser extends Component {
     });
   }
 
-  onChangeNews(e) {
+  onChangeNews(Boolean) {
     this.setState({
-      news: e.target.value
+      news: Boolean
     });
   }
 
@@ -80,14 +80,14 @@ export default class newuser extends Component {
       username: this.state.username,
       gender: this.state.gender,
       dob: this.state.dob,
-      new: this.state.news,
+      news: this.state.news,
       email: this.state.email,
       photo: this.state.photo
     };
   
     console.log(users);
-    axios.post('http://localhost:5000/users/add/', users).then(res => console.log(res.data));
-    window.location = '/';
+    axios.post('http://localhost:5000/users/add/', users).then(res => console.log(res));
+    //window.location = '/';
   }
 
   render() {
@@ -99,9 +99,12 @@ export default class newuser extends Component {
             <label>Username: </label>
             <input  type="text" required className="form-control" value={this.state.username} onChange={this.onChangeUsername}/>
           </div>
-          <div className="form-group"> 
-            <label>Genre: </label>
-            <input  type="text" required className="form-control" value={this.state.gender} onChange={this.onChangeGender}/>
+          <label>Genre: </label>
+          <div>
+            <select class="form-control" selected={this.state.gender} onChange={this.onChangeGender}>
+              <option value="Homme">Homme</option>
+              <option value="Femme">Femme</option>
+            </select>
           </div>
           <div className="form-group">
             <label>Dob: </label>
@@ -109,9 +112,12 @@ export default class newuser extends Component {
               <DatePicker selected={this.state.dob} onChange={this.onChangeDob} />
             </div>
           </div>
-          <div className="form-group"> 
-            <label>News: </label>
-            <input  type="text" required className="form-control" value={this.state.news} onChange={this.onChangeNews}/>
+          <label>News: </label>
+          <div>
+            <select class="form-control" selected={this.state.news} onChange={this.onChangeNews}>
+              <option value="True">True</option>
+              <option value="False">False</option>
+            </select>
           </div>
           <div className="form-group"> 
             <label>Email: </label>

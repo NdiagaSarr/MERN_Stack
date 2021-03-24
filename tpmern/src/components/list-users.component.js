@@ -2,22 +2,26 @@
 import React, { Component } from 'react';
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const User=props =>(
   <tr>
     <td>{props.user.username}</td>
     <td>{props.user.gender}</td>
     <td>{props.user.dob}</td>
-    <td>{props.user.news}</td>
+    <td>{props.user.news.toString()}</td>
     <td>{props.user.email}</td>
     <td>{props.user.photo}</td>
+    <td>
+      <Link to={"/edit/"+props.user._id}>Modifier</Link> <button className="btn btn-outline-danger btn-sm" onClick={() => { props.deleteUser(props.user._id) }}>Supprimer</button>
+    </td>
   </tr>
 )
 
 export default class listusers extends Component {
   constructor(props) {
     super(props);
-
+    this.deleteUser = this.deleteUser.bind(this);
     this.state = {
       User: []
     }
@@ -40,6 +44,20 @@ export default class listusers extends Component {
     })
   }
   
+  onChangeID(e) {
+    this.setState({
+    ID: e.target.value
+    });
+  }
+
+  deleteUser(id) {
+	  axios.delete('http://localhost:5000/users/'+id)
+	       .then(res => console.log(res.data));
+	  this.setState({
+	    User: this.state.username.filter(req => req._id !== id)
+	  })
+	}
+
   render() {
     return (
       <div>
@@ -55,6 +73,7 @@ export default class listusers extends Component {
                   <th>News</th>
                   <th>Emails</th>
                   <th>Photos</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>

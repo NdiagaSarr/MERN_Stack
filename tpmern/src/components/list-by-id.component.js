@@ -31,7 +31,7 @@ export default class listbyid extends Component {
           username: response.data.username,
           gender: response.data.gender,
           dob: new Date(response.data.dob),
-          news: response.data.new,
+          news: response.data.news,
           email: response.data.email,
           photo: response.data.photo
         })   
@@ -93,7 +93,7 @@ export default class listbyid extends Component {
       username: this.state.username,
       gender: this.state.gender,
       dob: this.state.dob,
-      new: this.state.news,
+      news: this.state.news,
       email: this.state.email,
       photo: this.state.photo
     };
@@ -119,9 +119,7 @@ export default class listbyid extends Component {
         <form onSubmit={this.onSubmit}>
           <div className="form-group"> 
             <label>utilisateurs:<br/> </label>
-            <select ref="userInput"
-                className="form-control"
-                value={this.state.username}
+            <select ref="userInput" className="form-control" value={this.state.username}
                 onChange={this.onChangeUsername}>
                 {
                   this.state.User.map(function(user) {
