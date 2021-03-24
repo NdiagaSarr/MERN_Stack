@@ -55,9 +55,9 @@ export default class newuser extends Component {
     });
   }
 
-  onChangeNews(Boolean) {
+  onChangeNews(e) {
     this.setState({
-      news: Boolean
+      news: e.target.value
     });
   }
 
@@ -87,7 +87,7 @@ export default class newuser extends Component {
   
     console.log(users);
     axios.post('http://localhost:5000/users/add/', users).then(res => console.log(res));
-    //window.location = '/';
+    window.location = '/';
   }
 
   render() {
@@ -99,12 +99,9 @@ export default class newuser extends Component {
             <label>Username: </label>
             <input  type="text" required className="form-control" value={this.state.username} onChange={this.onChangeUsername}/>
           </div>
-          <label>Genre: </label>
-          <div>
-            <select class="form-control" selected={this.state.gender} onChange={this.onChangeGender}>
-              <option value="Homme">Homme</option>
-              <option value="Femme">Femme</option>
-            </select>
+          <div className="form-group"> 
+            <label>Genre: </label>
+            <input  type="text" required className="form-control" value={this.state.gender} onChange={this.onChangeGender}/>
           </div>
           <div className="form-group">
             <label>Dob: </label>
@@ -112,12 +109,9 @@ export default class newuser extends Component {
               <DatePicker selected={this.state.dob} onChange={this.onChangeDob} />
             </div>
           </div>
-          <label>News: </label>
-          <div>
-            <select class="form-control" selected={this.state.news} onChange={this.onChangeNews}>
-              <option value="True">True</option>
-              <option value="False">False</option>
-            </select>
+          <div className="form-group"> 
+            <label>News: </label>
+            <input  type="text" required className="form-control" value={this.state.news} onChange={this.onChangeNews}/>
           </div>
           <div className="form-group"> 
             <label>Email: </label>

@@ -4,8 +4,6 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 
-const User=props =>(props.user.username)
-
 export default class listbyid extends Component {
   constructor(props) {
     super(props);
@@ -19,13 +17,18 @@ export default class listbyid extends Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      User: []
+      username: '',
+      gender: '',
+      dob: new Date(),
+      news: '',
+      email: '',
+      photo: ''
     }
   }
 
   componentDidMount() {
 
-    axios.get('http://localhost:5000/users/'+this.props.match.params._id)
+    axios.get('http://localhost:5000/users/'+this.props.match.params.id)
       .then(response => {
         this.setState({
           username: response.data.username,
@@ -34,16 +37,6 @@ export default class listbyid extends Component {
           news: response.data.news,
           email: response.data.email,
           photo: response.data.photo
-        })   
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-
-    axios.get('http://localhost:5000/users/')
-      .then(response => {
-        this.setState({
-          User: response.data.map(user => user.username)
         })   
       })
       .catch(function (error) {
@@ -100,16 +93,10 @@ export default class listbyid extends Component {
 
     console.log(user);
 
-    axios.post('http://localhost:5000/users/'+this.props.match.params.id, user)
+    axios.put('http://localhost:5000/users/'+this.props.match.params.id, user)
       .then(res => console.log(res.data));
     
     window.location = '/';
-  }
-
-  usersList() {
-    return this.state.User.map(currentUser => {
-      return <User user={currentUser} deleteUser={this.deleteUser} key={currentUser.id}/>;
-    })
   }
 
   render() {
@@ -117,19 +104,10 @@ export default class listbyid extends Component {
       <div>
         <h3>Gestion</h3>
         <form onSubmit={this.onSubmit}>
-          <div className="form-group"> 
-            <label>utilisateurs:<br/> </label>
-            <select ref="userInput" className="form-control" value={this.state.username}
-                onChange={this.onChangeUsername}>
-                {
-                  this.state.User.map(function(user) {
-                    return <option 
-                      key={user}
-                      value={user}>{user}
-                      </option>;
-                  })
-                }
-            </select>
+          
+        <div className="form-group"> 
+            <label>Utilisateur: </label>
+            <input  type="text" required className="form-control" value={this.state.username} onChange={this.onChangeUsername}/>
           </div>
           <div className="form-group"> 
             <label>Genre: </label>
