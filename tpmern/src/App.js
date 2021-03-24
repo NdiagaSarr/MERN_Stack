@@ -15,7 +15,7 @@ function App() {
         <Navbar/>
         <br/>
         <Route path="/" exact component={listusers} />
-        <Route path="/:id" component={listbyid} />
+        <Route path="/edit" component={listbyid} />
         <Route path="/add" component={newuser} />
       </div>
     </Router>
